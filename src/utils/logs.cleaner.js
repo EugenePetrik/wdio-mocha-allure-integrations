@@ -1,28 +1,28 @@
-import fs from 'fs-extra';
-import path from 'path';
+import { emptyDirSync, removeSync, ensureDirSync } from 'fs-extra';
+import { join } from 'path';
 import { logger } from '../configs';
 
 // Delete allure-report directory
-const allureReportDirPath = path.join(__dirname, '..', '..', 'allure-report');
+const allureReportDirPath = join(__dirname, '..', '..', 'allure-report');
 logger.debug(`Removing the allure-report directory -> ${allureReportDirPath}`);
-fs.emptyDirSync(allureReportDirPath);
+emptyDirSync(allureReportDirPath);
 logger.debug('Allure report directory removed');
 
 // Delete allure-results directory
-const allureResultsDirPath = path.join(__dirname, '..', '..', 'allure-results');
+const allureResultsDirPath = join(__dirname, '..', '..', 'allure-results');
 logger.debug(`Removing the allure-results directory -> ${allureResultsDirPath}`);
-fs.emptyDirSync(allureResultsDirPath);
+emptyDirSync(allureResultsDirPath);
 logger.debug('Allure results directory removed');
 
 // Delete combined.log file
-const combinedLogFilePath = path.join(__dirname, '..', '..', 'logs', 'combined.log');
+const combinedLogFilePath = join(__dirname, '..', '..', 'logs', 'combined.log');
 logger.debug(`Removing the combined.log file -> ${combinedLogFilePath}`);
-fs.removeSync(combinedLogFilePath);
+removeSync(combinedLogFilePath);
 logger.debug('File combined.log removed');
 
 // Create logs directory
-const logsDirPath = path.join(__dirname, '..', '..', 'logs');
+const logsDirPath = join(__dirname, '..', '..', 'logs');
 logger.debug(`Creating the logs directory -> ${logsDirPath}`);
 
-fs.ensureDirSync(logsDirPath);
+ensureDirSync(logsDirPath);
 logger.debug('Logs directory created');
