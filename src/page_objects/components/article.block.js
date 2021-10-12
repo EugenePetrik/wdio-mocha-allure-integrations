@@ -1,5 +1,5 @@
 import { logger } from '../../configs/';
-import { Element } from '../../helpers';
+import { Element } from '../../helper';
 import { articleBlock } from '../../elements//components';
 
 export class ArticleBlock {

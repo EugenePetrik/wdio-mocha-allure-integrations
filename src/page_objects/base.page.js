@@ -1,9 +1,13 @@
 import { logger } from '../configs';
 import { Browser } from '../helper';
+import { FooterComponent, NavBarComponent } from './components';
 
 export class BasePage {
+  navBar = new NavBarComponent();
+  footer = new FooterComponent();
+
   async open(path) {
-    await Browser.open(path);
+    await Browser.url(path);
   }
 
   async getBaseUrl() {
@@ -21,6 +25,7 @@ export class BasePage {
   async getPageTitle() {
     const pageTitle = await Browser.getTitle();
     logger.debug(`Page title is '${pageTitle}'`);
+    return pageTitle;
   }
 
   async refreshCurrentPage() {

@@ -1,7 +1,7 @@
-import { Element } from '../../../helpers';
+import { Element } from '../../../helper';
 import { logger } from '../../../configs/';
 import { home } from '../../../elements/home';
-import { ArticleBlock } from '../../../pageobjects/components';
+import { ArticleBlock } from '../../../page_objects/components';
 
 export class YourFeed {
   articleBlock = new ArticleBlock();

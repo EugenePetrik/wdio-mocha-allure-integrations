@@ -2,7 +2,7 @@ import { logger } from '../../configs';
 import { BasePage } from '../base.page';
 import { Banner, GlobalFeed, PopularTags, YourFeed } from './components';
 import { home } from '../../elements/home';
-import { Waiter } from '../../helpers';
+import { Waiter } from '../../helper';
 
 export class HomePage extends BasePage {
   banner = new Banner();
