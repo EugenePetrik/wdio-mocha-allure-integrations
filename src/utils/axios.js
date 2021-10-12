@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { globalConfig } from '../config/global.js';
+import { globalConfig } from '../api/global';
 
 export class Axios {
   static async get(endpoint, headers) {
