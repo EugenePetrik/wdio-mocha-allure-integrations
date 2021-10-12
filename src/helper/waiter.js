@@ -1,4 +1,4 @@
-import { Timeouts } from '../config/timeout';
+import { Timeouts } from '../configs/timeout';
 
 export class Waiter {
   static async waitForPageLoading(maxWaitTime = Timeouts.max) {

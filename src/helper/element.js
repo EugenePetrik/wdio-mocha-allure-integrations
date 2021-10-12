@@ -1,18 +1,42 @@
-import { waitForClickable, waitForExist } from './waiter';
+import { Waiter } from './waiter';
 
 export class Element {
   static async click(locator) {
-    await waitForClickable(locator);
+    await Waiter.waitForClickable(locator);
     await (await $(locator)).click();
   }
 
+  static async setValue(locator, value) {
+    await Waiter.waitForExist(locator);
+    await await (await $(locator)).setValue(value);
+  }
+
   static async getText(locator) {
-    await waitForExist(locator);
+    await Waiter.waitForExist(locator);
     return await (await $(locator)).getText();
   }
 
+  static async getAttribute(element, attributeName) {
+    await Waiter.waitForExist(element);
+    return await $(element).getAttribute(attributeName);
+  }
+
+  static async getElementsLength(elements) {
+    await Waiter.waitForElements(elements);
+    return await $$(elements).length;
+  }
+
+  static async getTextFromElements(elements) {
+    await Waiter.waitForElements(elements);
+    return Promise.all(await $$(elements).map(async (link) => {
+      return (await link.getText()).trim();
+    })).then((links) => {
+      return links;
+    });
+  }
+
   static async getTextArray(locator) {
-    await waitForExist(locator);
+    await Waiter.waitForExist(locator);
     const elNumber = (await $$(locator)).length;
     const textArr = [];
     for (let i = 0; i < elNumber; i++) {
@@ -22,22 +46,17 @@ export class Element {
   }
 
   static async isSelected(locator) {
-    await waitForExist(locator);
+    await Waiter.waitForExist(locator);
     return await (await $(locator)).isSelected();
   }
 
   static async isDisplayed(locator) {
-    await waitForExist(locator);
+    await Waiter.waitForExist(locator);
     return await (await $(locator)).isDisplayed();
   }
 
   static async isExisted(locator) {
-    await waitForExist(locator);
+    await Waiter.waitForExist(locator);
     return await (await $(locator)).isExisting();
-  }
-
-  static async setValue(locator, value) {
-    await waitForExist(locator);
-    await await (await $(locator)).setValue(value);
   }
 }
