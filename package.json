@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "remove-logs": "node ./src/utils/logs.cleaner.ts",
-    "pretest": "npm run remove-logs",
     "lint": "eslint . --ext .js",
     "test": "wdio run ./src/configs/wdio.conf.js",
     "report": "allure generate ./allure-results --clean && allure open",
@@ -63,7 +61,7 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint . --ext .ts --debug"
+      "eslint . --ext .js --debug"
     ]
   }
 }

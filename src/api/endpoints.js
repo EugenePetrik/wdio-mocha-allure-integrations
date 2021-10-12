@@ -1,29 +1,29 @@
 export const endpoints = {
   user: {
-    register: 'users',
-    login: 'users/login',
+    register: '/users',
+    login: '/users/login',
   },
   article: {
     getArticle(articleSlug) {
-      return `articles/${articleSlug}`;
+      return `/articles/${articleSlug}`;
     },
-    createArticle: 'articles',
+    createArticle: '/articles',
     updateArticle(articleSlug) {
-      return `articles/${articleSlug}`;
+      return `/articles/${articleSlug}`;
     },
     addArticleToFavorite(articleSlug) {
-      return `articles/${articleSlug}/favorite`;
+      return `/articles/${articleSlug}/favorite`;
     },
     deleteArticle(articleSlug) {
-      return `articles/${articleSlug}`;
+      return `/articles/${articleSlug}`;
     },
   },
   comment: {
     createComment(articleSlug) {
-      return `articles/${articleSlug}/comments`;
+      return `/articles/${articleSlug}/comments`;
     },
     deleteComment(articleSlug, commentId) {
-      return `articles/${articleSlug}/comments/${commentId}`;
+      return `/articles/${articleSlug}/comments/${commentId}`;
     },
   },
 };
