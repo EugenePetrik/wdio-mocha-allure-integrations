@@ -98,6 +98,7 @@
     "mocha/no-skipped-tests": ["error"],
     "mocha/no-exclusive-tests": ["error"],
     "mocha/no-setup-in-describe": ["off"],
+    "mocha/no-hooks-for-single-case": ["off"],
     "no-only-tests/no-only-tests": ["error"],
     "max-len": ["error", { "code": 120, "ignoreComments": true }],
     "object-curly-spacing": [

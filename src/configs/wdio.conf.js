@@ -63,6 +63,7 @@ exports.config = {
       maxInstances: 1,
       //
       browserName: 'chrome',
+      browserVersion: 'latest',
       'goog:chromeOptions': {
         args: [
           '--no-sandbox',

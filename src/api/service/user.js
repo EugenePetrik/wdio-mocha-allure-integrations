@@ -41,7 +41,7 @@ export class User {
     };
 
     return await Axios.post(endpoints.user.login, globalConfig.commonHeader, requestBody).then((response) => {
-      return response.headers['Authorization'];
+      return response.data['user']['token'];
     });
   }
 }

@@ -1,5 +1,5 @@
 import { logger } from '../configs';
-import { Browser } from '../helper';
+import { Browser, Waiter } from '../helper';
 import { FooterComponent, NavBarComponent } from './components';
 
 export class BasePage {
@@ -8,6 +8,7 @@ export class BasePage {
 
   async open(path) {
     await Browser.url(path);
+    await Waiter.waitForPageLoading();
   }
 
   async getBaseUrl() {
@@ -31,5 +32,6 @@ export class BasePage {
   async refreshCurrentPage() {
     logger.debug('Refresh the current page');
     await Browser.refresh();
+    await Waiter.waitForPageLoading();
   }
 }
