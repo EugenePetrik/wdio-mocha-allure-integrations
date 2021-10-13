@@ -7,7 +7,6 @@ export class SignInPage extends BasePage {
   async open() {
     logger.debug('Open the Sign In page');
     await super.open('/login');
-    await Waiter.waitForPageLoading();
   }
 
   async waitSignInPageLoaded() {
