@@ -16,19 +16,24 @@ export class Element {
     return await (await $(locator)).getText();
   }
 
-  static async getAttribute(element, attributeName) {
-    await Waiter.waitForExist(element);
-    return await $(element).getAttribute(attributeName);
+  static async getValue(locator) {
+    await Waiter.waitForExist(locator);
+    return await $(locator).getValue();
   }
 
-  static async getElementsLength(elements) {
-    await Waiter.waitForElements(elements);
-    return await $$(elements).length;
+  static async getAttribute(locator, attributeName) {
+    await Waiter.waitForExist(locator);
+    return await $(locator).getAttribute(attributeName);
   }
 
-  static async getTextFromElements(elements) {
-    await Waiter.waitForElements(elements);
-    return Promise.all(await $$(elements).map(async (link) => {
+  static async getElementsLength(locator) {
+    await Waiter.waitForElements(locator);
+    return await $$(locator).length;
+  }
+
+  static async getTextFromElements(locator) {
+    await Waiter.waitForElements(locator);
+    return Promise.all(await $$(locator).map(async (link) => {
       return (await link.getText()).trim();
     })).then((links) => {
       return links;

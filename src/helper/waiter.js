@@ -67,9 +67,9 @@ export class Waiter {
     }
   }
 
-  static async waitForElements(elements, maxWaitTime = Timeouts.max) {
+  static async waitForElements(locator, maxWaitTime = Timeouts.max) {
     await browser.waitUntil(async () => {
-      return (await $$(elements)).length > 0;
+      return (await $$(locator)).length > 0;
     },
     {
       timeout: maxWaitTime,
