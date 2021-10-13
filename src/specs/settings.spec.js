@@ -1,13 +1,14 @@
 import { expect } from 'chai';
 import { SettingsPage } from '../page_objects/settings.page';
-import { createUserAndSignIn } from '../utils/api';
+import { ApiHelper } from '../utils/api.helper';
 import { user } from '../models';
 
 describe('Settings', () => {
   let settingsPage;
 
   before(async () => {
-    await createUserAndSignIn(user);
+    const token = await ApiHelper.createUser(user);
+    await ApiHelper.loginToApp(token);
   });
 
   beforeEach(async () => {

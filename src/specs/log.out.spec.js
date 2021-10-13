@@ -3,14 +3,15 @@ import { env } from '../configs';
 import { user } from '../models';
 import { HomePage } from '../page_objects/home';
 import { SettingsPage } from '../page_objects/settings.page';
-import { createUserAndSignIn } from '../utils/api';
+import { ApiHelper } from '../utils/api.helper';
 
 describe('Log out', () => {
   let settingsPage;
   let homePage;
 
   before(async () => {
-    await createUserAndSignIn(user);
+    const token = await ApiHelper.createUser(user);
+    await ApiHelper.loginToApp(token);
   });
 
   beforeEach(async () => {

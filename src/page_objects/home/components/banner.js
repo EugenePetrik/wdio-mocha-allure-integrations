@@ -10,7 +10,7 @@ export class Banner {
   }
 
   async getBrandDescriptionText() {
-    const brandDescriptionText = (await Element.getText(home.banner.description)).getText();
+    const brandDescriptionText = (await Element.getText(home.banner.description)).trim();
     logger.debug(`Brand description is ${brandDescriptionText} on the Home page`);
     return brandDescriptionText;
   }
