@@ -29,19 +29,4 @@ export class User {
 
     return await Axios.post(endpoints.user.login, globalConfig.commonHeader, requestBody);
   }
-
-  static async getAuthorizationToken(user) {
-    const { email, password } = user;
-
-    const requestBody = {
-      user: {
-        email,
-        password,
-      },
-    };
-
-    return await Axios.post(endpoints.user.login, globalConfig.commonHeader, requestBody).then((response) => {
-      return response.data['user']['token'];
-    });
-  }
 }
