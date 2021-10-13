@@ -9,7 +9,7 @@ export const globalConfig = {
   },
   authorizationHeader(token) {
     return {
-      Authorization: token,
+      Authorization: `Token ${token}`,
     };
   },
 };
