@@ -51,17 +51,14 @@ export class Element {
   }
 
   static async isSelected(locator) {
-    await Waiter.waitForExist(locator);
     return await (await $(locator)).isSelected();
   }
 
   static async isDisplayed(locator) {
-    await Waiter.waitForExist(locator);
     return await (await $(locator)).isDisplayed();
   }
 
   static async isExisted(locator) {
-    await Waiter.waitForExist(locator);
     return await (await $(locator)).isExisting();
   }
 }

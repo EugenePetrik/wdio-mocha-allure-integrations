@@ -4,7 +4,7 @@ import { HomePage } from '../../page_objects/home';
 import { ApiHelper } from '../../utils/api.helper';
 import { user, article } from '../../models';
 
-describe('Home page for authorized user', () => {
+describe('Home page for unauthorized user', () => {
   let homePage;
   let token;
 
@@ -16,7 +16,8 @@ describe('Home page for authorized user', () => {
 
   beforeEach(async () => {
     homePage = new HomePage();
-    await ApiHelper.loginToApp(token);
+    await homePage.open();
+    await homePage.waitHomePageLoaded();
   });
 
   it('should have navigation bar', async () => {
@@ -26,8 +27,8 @@ describe('Home page for authorized user', () => {
     const pageTitle = await homePage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 
-    const isBrandLogoDisplayed = await homePage.navBar.isBrandLogoDisplayed();
-    expect(isBrandLogoDisplayed).to.be.true;
+    const isBrandLogoVisible = await homePage.navBar.isBrandLogoDisplayed();
+    expect(isBrandLogoVisible).to.be.true;
 
     const brandLogoLink = await homePage.navBar.getBrandLogoLink();
     expect(brandLogoLink).to.eq('/');
@@ -35,7 +36,7 @@ describe('Home page for authorized user', () => {
 
   it('should have navigation bar links', async () => {
     const navbarLinksText = await homePage.navBar.getNavLinksText();
-    expect(navbarLinksText).to.eql(['Home', 'New Article', 'Settings', user.username]);
+    expect(navbarLinksText).to.eql(['Home', 'Sign in', 'Sign up']);
   });
 
   it('should have banner', async () => {
@@ -46,12 +47,9 @@ describe('Home page for authorized user', () => {
     expect(brandDescriptionText).to.eq('A place to share your knowledge.');
   });
 
-  it('should have your feed', async () => {
-    await homePage.yourFeed.clickYourFeedTab();
-    await homePage.waitHomePageLoaded();
-
-    const articlesEmptyText = await homePage.yourFeed.articleBlock.getArticlesEmptyText();
-    expect(articlesEmptyText).to.eq('No articles are here... yet.');
+  it('should not have your feed', async () => {
+    const isYourFeedTabDisplayed = await homePage.yourFeed.isYourFeedTabDisplayed();
+    expect(isYourFeedTabDisplayed).to.be.false;
   });
 
   it('should have global feed', async () => {
@@ -70,7 +68,9 @@ describe('Home page for authorized user', () => {
     expect(popularTagsLength).to.be.greaterThan(0);
 
     const popularTagsTitles = await homePage.popularTags.getPopularTagsTitles();
-    expect(popularTagsTitles).to.include(article.tagList[0]);
+    article.tagList.forEach((tag) => {
+      expect(popularTagsTitles).to.include(tag);
+    });
   });
 
   it('should have footer', async () => {
