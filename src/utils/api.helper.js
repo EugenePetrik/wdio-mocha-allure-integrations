@@ -1,5 +1,5 @@
 import { logger } from '../configs';
-import { User, Article } from '../api/service';
+import { User, Article, Comment } from '../api/service';
 import { HomePage } from '../page_objects/home';
 
 export class ApiHelper {
@@ -59,6 +59,7 @@ export class ApiHelper {
 
   static async createArticle(article, token) {
     logger.debug(`Create a new article via API with - ${JSON.stringify(article)}`);
+
     const { data } = await browser.call(async function () {
       return await Article.createArticle(article, token);
     });
@@ -76,8 +77,17 @@ export class ApiHelper {
   
   static async addArticleToFavorite(articleSlug, token) {
     logger.debug('Add an article to favorite');
+
     await browser.call(async function () {
       return await Article.addArticleToFavorite(articleSlug, token);
+    });
+  }
+
+  static async addCommentToArticle(articleSlug, comment, token) {
+    logger.debug(`Add a comment - ${JSON.stringify(comment)} to an article with slug - ${articleSlug}`);
+
+    await browser.call(async function () {
+      return await Comment.createComment(articleSlug, comment, token);
     });
   }
 }
