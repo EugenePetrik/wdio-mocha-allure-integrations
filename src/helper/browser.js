@@ -22,9 +22,4 @@ export class Browser {
   static async pause(miliseconds) {
     await browser.pause(miliseconds);
   }
-
-  static async mockApiResponse(endpoint, data) {
-    const mock = await browser.mock(endpoint);
-    mock.respond(JSON.stringify(data));
-  }
 }
