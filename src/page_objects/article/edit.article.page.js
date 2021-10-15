@@ -1,4 +1,4 @@
-import { logger, timeouts } from '../../configs';
+import { logger, Timeouts } from '../../configs';
 import { BasePage } from '../base.page';
 import { articles } from '../../elements/articles';
 import { Waiter, Element, Actions, Browser } from '../../helpers';
@@ -57,7 +57,7 @@ export class EditArticlePage extends BasePage {
     for await (const tag of tagList) {
       await Element.setValue(articles.edit.tagsInput, tag);
       await Actions.enter();
-      await Browser.pause(timeouts.element);
+      await Browser.pause(Timeouts.element);
     }
 
     await Element.click(articles.edit.publishArticleButton);
