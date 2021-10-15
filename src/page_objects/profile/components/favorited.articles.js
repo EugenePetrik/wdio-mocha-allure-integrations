@@ -1,6 +1,6 @@
 import { logger, Timeouts } from '../../../configs';
 import { profile } from '../../../elements/profile';
-import { Browser, Element } from '../../../helper';
+import { Browser, Element } from '../../../helpers';
 import { ArticleBlock } from '../../../page_objects/components';
 
 export class FavoritedArticles {

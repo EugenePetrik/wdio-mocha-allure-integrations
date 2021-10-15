@@ -1,4 +1,4 @@
-import { Element } from '../../../helper';
+import { Element } from '../../../helpers';
 import { logger } from '../../../configs';
 import { home } from '../../../elements/home';
 import { ArticleBlock } from '../../../page_objects/components';

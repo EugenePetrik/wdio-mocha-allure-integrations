@@ -1,6 +1,6 @@
 import { BasePage } from './base.page';
 import { signUp } from '../elements/sign.up';
-import { Element, Waiter } from '../helper';
+import { Element, Waiter } from '../helpers';
 import { logger } from '../configs';
 
 export class SignUpPage extends BasePage {

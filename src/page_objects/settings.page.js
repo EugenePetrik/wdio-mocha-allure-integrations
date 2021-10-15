@@ -1,7 +1,7 @@
 import { logger } from '../configs';
 import { BasePage } from './base.page';
 import { settings } from '../elements/settings';
-import { Waiter, Element } from '../helper';
+import { Waiter, Element } from '../helpers';
 
 export class SettingsPage extends BasePage {
   async open() {

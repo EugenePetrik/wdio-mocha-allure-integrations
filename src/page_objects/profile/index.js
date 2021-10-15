@@ -1,7 +1,7 @@
 import { logger } from '../../configs';
 import { BasePage } from '../base.page';
 import { FavoritedArticles, MyArticles } from './components';
-import { Element, Waiter } from '../../helper';
+import { Element, Waiter } from '../../helpers';
 import { profile } from '../../elements/profile';
 
 export class ProfilePage extends BasePage {

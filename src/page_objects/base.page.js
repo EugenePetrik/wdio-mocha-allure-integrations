@@ -1,5 +1,5 @@
 import { logger } from '../configs';
-import { Browser, Waiter } from '../helper';
+import { Browser, Waiter } from '../helpers';
 import { FooterComponent, NavBarComponent } from './components';
 
 export class BasePage {

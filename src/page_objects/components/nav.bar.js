@@ -1,6 +1,6 @@
 import { logger } from '../../configs';
 import { navBar } from '../../elements/components/nav.bar';
-import { Waiter, Element } from '../../helper';
+import { Waiter, Element } from '../../helpers';
 
 export class NavBarComponent {
   async waitNavBarLoaded() {

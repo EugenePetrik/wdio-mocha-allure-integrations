@@ -1,6 +1,6 @@
 import { logger } from '../../configs';
 import { footer } from '../../elements/components/footer';
-import { Waiter, Element } from '../../helper';
+import { Waiter, Element } from '../../helpers';
 
 export class FooterComponent {
   async waitFooterLoaded() {

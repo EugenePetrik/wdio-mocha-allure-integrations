@@ -1,6 +1,6 @@
 import { logger } from '../configs';
 import { BasePage } from './base.page';
-import { Element, Waiter } from '../helper';
+import { Element, Waiter } from '../helpers';
 import { signIn } from '../elements/sign.in';
 
 export class SignInPage extends BasePage {

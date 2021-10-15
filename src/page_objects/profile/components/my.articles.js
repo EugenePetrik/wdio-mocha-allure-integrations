@@ -1,6 +1,6 @@
 import { logger } from '../../../configs';
 import { profile } from '../../../elements/profile';
-import { Element } from '../../../helper';
+import { Element } from '../../../helpers';
 import { ArticleBlock } from '../../../page_objects/components';
 
 export class MyArticles {
