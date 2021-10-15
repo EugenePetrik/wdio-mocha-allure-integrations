@@ -1,3 +1,3 @@
 export { env } from './env';
 export { logger } from './logger';
-export { timeouts } from './timeout';
+export { Timeouts } from './timeout';

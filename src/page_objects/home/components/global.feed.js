@@ -1,5 +1,5 @@
 import { Element } from '../../../helper';
-import { logger } from '../../../configs/';
+import { logger } from '../../../configs';
 import { home } from '../../../elements/home';
 import { ArticleBlock } from '../../../page_objects/components';
 
