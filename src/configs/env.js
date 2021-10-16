@@ -33,5 +33,9 @@ export const env = cleanEnv(process.env, {
   TEST_RAIL_SUITE_ID: num({
     default: 1,
     desc: 'TestRail Suite ID',
+  }),
+  SLACK_WEB_HOOK_URL: str({
+    default: 'qwerty',
+    desc: 'SLACK Web Hook URL',
   })
 });
