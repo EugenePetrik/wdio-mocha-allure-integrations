@@ -40,4 +40,10 @@ export class JsExecutor {
   static async getURL() {
     return await browser.execute('return document.URL');
   }
+
+  static async setValue(locator, value) {
+    await browser.execute(function (_value) {
+      document.querySelector(locator).value = _value;
+    }, value);
+  }
 }
