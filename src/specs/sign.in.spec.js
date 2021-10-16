@@ -22,7 +22,7 @@ describe('Sign in', () => {
     await signInPage.waitSignInPageLoaded();
   });
 
-  it('should open the page', async () => {
+  it('C2321 should open the page', async () => {
     const pageTitle = await signInPage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 
@@ -36,7 +36,7 @@ describe('Sign in', () => {
     expect(accountLinkHreAttr).to.eq('/register');
   });
 
-  it('should log in successfully', async () => {
+  it('C2321 should log in successfully', async () => {
     await signInPage.signInAs(user);
     await homePage.navBar.waitNavBarLoaded();
     await homePage.waitHomePageLoaded();

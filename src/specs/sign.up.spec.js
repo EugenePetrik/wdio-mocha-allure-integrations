@@ -16,7 +16,7 @@ describe('Sign up', () => {
     await signUpPage.waitSignUpPageLoaded();
   });
 
-  it('should open the page', async () => {
+  it('C2322 should open the page', async () => {
     const pageTitle = await signUpPage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 
@@ -30,7 +30,7 @@ describe('Sign up', () => {
     expect(accountLinkHreAttr).to.eq('/login');
   });
 
-  it('should sign up successfully', async () => {
+  it('C2322 should sign up successfully', async () => {
     await signUpPage.signUpAs(user);
     await homePage.navBar.waitNavBarLoaded();
     await homePage.waitHomePageLoaded();

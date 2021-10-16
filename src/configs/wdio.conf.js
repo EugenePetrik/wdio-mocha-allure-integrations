@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
+
 import { env } from './env';
 import * as dotenv from 'dotenv';
+import { createTestRun } from '../utils/test.rail.helper';
+import TestRailReporter from 'wdio-v6-testrail-reporter';
 
 dotenv.config({ path: `${__dirname}/.env` });
 
@@ -155,6 +159,16 @@ exports.config = {
   reporters: [
     'spec',
     [
+      TestRailReporter,
+      {
+        testRailUrl: env.TEST_RAIL_URL,
+        username: env.TEST_RAIL_USERNAME,
+        password: env.TEST_RAIL_PASSWORD,
+        projectId: env.TEST_RAIL_PROJECT_ID,
+        suiteId: env.TEST_RAIL_SUITE_ID,
+      },
+    ],
+    [
       'allure',
       {
         outputDir: 'allure-results',
@@ -186,8 +200,9 @@ exports.config = {
    * @param {Object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  async onPrepare(config, capabilities) {
+    await createTestRun();
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -216,8 +231,8 @@ exports.config = {
    * @param {Array.<String>} specs        List of spec file paths that are to be run
    * @param {Object}         browser      instance of created browser/device session
    */
-  before: (capabilities, specs) => {
-    browser.setWindowSize(1920, 1080);
+  async before(capabilities, specs) {
+    await browser.setWindowSize(1920, 1080);
   },
   /**
    * Runs before a WebdriverIO command gets executed.
@@ -235,8 +250,8 @@ exports.config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  beforeTest: (test, context) => {
-    browser.setTimeout({ implicit: 1000 });
+  async beforeTest(test, context) {
+    await browser.setTimeout({ implicit: 1000 });
   },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling

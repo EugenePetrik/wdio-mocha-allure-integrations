@@ -18,7 +18,7 @@ describe('Settings', () => {
     await settingsPage.waitSettingsPageLoaded();
   });
 
-  it('should open the page', async () => {
+  it('C2323 should open the page', async () => {
     const pageTitle = await settingsPage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 

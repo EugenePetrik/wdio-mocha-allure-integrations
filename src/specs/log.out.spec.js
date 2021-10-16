@@ -22,7 +22,7 @@ describe('Log out', () => {
     await settingsPage.waitSettingsPageLoaded();
   });
 
-  it('should log out', async () => {
+  it('C2324 should log out', async () => {
     const isLogOutButtonDisplayed = await settingsPage.isLogOutButtonDisplayed();
     expect(isLogOutButtonDisplayed).to.be.true;
 
