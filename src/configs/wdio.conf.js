@@ -2,11 +2,17 @@
 
 import { env } from './env';
 import * as dotenv from 'dotenv';
-import { createTestRun } from '../utils/test.rail.helper';
-import TestRailReporter from 'wdio-v6-testrail-reporter';
-import slack from 'wdio-slack-service';
 
 dotenv.config({ path: `${__dirname}/.env` });
+
+import TestRailReporter from 'wdio-v6-testrail-reporter';
+import { createTestRun } from '../utils/test.rail.conf';
+
+import slack from 'wdio-slack-service';
+
+import reportportal from 'wdio-reportportal-reporter';
+import RpService from 'wdio-reportportal-service';
+import { RPconf } from '../utils/report.portal.conf';
 
 exports.config = {
   //
@@ -146,6 +152,7 @@ exports.config = {
         messageTitle: 'Webdriver IO Test Results',
       },
     ],
+    [RpService, {}],
   ],
 
   // Framework you want to run your specs with.
@@ -189,6 +196,7 @@ exports.config = {
         disableWebdriverScreenshotsReporting: false,
       },
     ],
+    [reportportal, RPconf],
   ],
 
   //
