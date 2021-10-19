@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { env } from '../configs';
+import { env } from '.';
 
 export async function createTestRun() {
   try {

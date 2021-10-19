@@ -6,13 +6,13 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: `${__dirname}/.env` });
 
 import TestRailReporter from 'wdio-v6-testrail-reporter';
-import { createTestRun } from '../utils/test.rail.conf';
+import { createTestRun } from './test.rail.conf';
 
 import slack from 'wdio-slack-service';
 
 import reportportal from 'wdio-reportportal-reporter';
 import RpService from 'wdio-reportportal-service';
-import { RPconf } from '../utils/report.portal.conf';
+import { RPconf } from './report.portal.conf';
 
 exports.config = {
   //
