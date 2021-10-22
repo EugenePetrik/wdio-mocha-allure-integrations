@@ -5,7 +5,7 @@ import { HomePage } from '../page_objects/home';
 import { SettingsPage } from '../page_objects/settings.page';
 import { ApiHelper } from '../utils/api.helper';
 
-describe('Log out', () => {
+describe('S9 Log out', () => {
   let settingsPage;
   let homePage;
 
@@ -22,7 +22,7 @@ describe('Log out', () => {
     await settingsPage.waitSettingsPageLoaded();
   });
 
-  it('C2324 should log out', async () => {
+  it('C2330 should log out', async () => {
     const isLogOutButtonDisplayed = await settingsPage.isLogOutButtonDisplayed();
     expect(isLogOutButtonDisplayed).to.be.true;
 

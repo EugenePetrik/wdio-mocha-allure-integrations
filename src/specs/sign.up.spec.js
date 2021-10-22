@@ -4,7 +4,7 @@ import { user } from '../models';
 import { HomePage } from '../page_objects/home';
 import { SignUpPage } from '../page_objects/sign.up.page';
 
-describe('Sign up', () => {
+describe('S9 Sign up', () => {
   let homePage;
   let signUpPage;
 
@@ -16,7 +16,7 @@ describe('Sign up', () => {
     await signUpPage.waitSignUpPageLoaded();
   });
 
-  it('C2322 should open the page', async () => {
+  it('C2325 should open the page', async () => {
     const pageTitle = await signUpPage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 
@@ -30,7 +30,7 @@ describe('Sign up', () => {
     expect(accountLinkHreAttr).to.eq('/login');
   });
 
-  it('C2322 should sign up successfully', async () => {
+  it('C2326 should sign up successfully', async () => {
     await signUpPage.signUpAs(user);
     await homePage.navBar.waitNavBarLoaded();
     await homePage.waitHomePageLoaded();

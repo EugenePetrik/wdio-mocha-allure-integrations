@@ -27,11 +27,11 @@ export const env = cleanEnv(process.env, {
     desc: 'TestRail API Key',
   }),
   TEST_RAIL_PROJECT_ID: num({
-    default: 1,
+    default: 2,
     desc: 'TestRail Project ID',
   }),
   TEST_RAIL_SUITE_ID: num({
-    default: 1,
+    default: 9,
     desc: 'TestRail Suite ID',
   }),
   SLACK_WEB_HOOK_URL: str({

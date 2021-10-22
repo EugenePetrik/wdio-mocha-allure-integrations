@@ -8,7 +8,7 @@ export class Element {
 
   static async setValue(locator, value) {
     await Waiter.waitForExist(locator);
-    await await (await $(locator)).setValue(value);
+    await (await $(locator)).setValue(value);
   }
 
   static async getText(locator) {

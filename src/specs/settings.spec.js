@@ -3,7 +3,7 @@ import { SettingsPage } from '../page_objects/settings.page';
 import { ApiHelper } from '../utils/api.helper';
 import { user } from '../models';
 
-describe('Settings', () => {
+describe('S9 Settings', () => {
   let settingsPage;
 
   before(async () => {
@@ -18,7 +18,7 @@ describe('Settings', () => {
     await settingsPage.waitSettingsPageLoaded();
   });
 
-  it('C2323 should open the page', async () => {
+  it('C2329 should open the page', async () => {
     const pageTitle = await settingsPage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 

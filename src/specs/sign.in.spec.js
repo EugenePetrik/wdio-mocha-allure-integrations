@@ -5,7 +5,7 @@ import { HomePage } from '../page_objects/home';
 import { SignInPage } from '../page_objects/sign.in.page';
 import { ApiHelper } from '../utils/api.helper';
 
-describe('Sign in', () => {
+describe('S9 Sign in', () => {
   let homePage;
   let signInPage;
 
@@ -22,7 +22,7 @@ describe('Sign in', () => {
     await signInPage.waitSignInPageLoaded();
   });
 
-  it('C2321 should open the page', async () => {
+  it('C2327 should open the page', async () => {
     const pageTitle = await signInPage.getPageTitle();
     expect(pageTitle).to.eq('Conduit');
 
@@ -36,7 +36,7 @@ describe('Sign in', () => {
     expect(accountLinkHreAttr).to.eq('/register');
   });
 
-  it('C2321 should log in successfully', async () => {
+  it('C2328 should log in successfully', async () => {
     await signInPage.signInAs(user);
     await homePage.navBar.waitNavBarLoaded();
     await homePage.waitHomePageLoaded();

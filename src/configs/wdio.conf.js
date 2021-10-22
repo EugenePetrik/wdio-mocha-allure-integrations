@@ -5,11 +5,17 @@ import * as dotenv from 'dotenv';
 
 dotenv.config({ path: `${__dirname}/.env` });
 
+// Test Rail dependencies
 import TestRailReporter from 'wdio-v6-testrail-reporter';
+import dayjs from 'dayjs';
 import { createTestRun } from './test.rail.conf';
 
+const runName = `Test Run ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`;
+
+// Slack dependencies
 import slack from 'wdio-slack-service';
 
+// Report Portal dependencies
 import reportportal from 'wdio-reportportal-reporter';
 import RpService from 'wdio-reportportal-service';
 import { RPconf } from './report.portal.conf';
@@ -185,7 +191,8 @@ exports.config = {
         password: env.TEST_RAIL_PASSWORD,
         projectId: env.TEST_RAIL_PROJECT_ID,
         suiteId: env.TEST_RAIL_SUITE_ID,
-        includeAll: false,
+        runName,
+        includeAll: true,
       },
     ],
     [
@@ -222,7 +229,7 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   async onPrepare(config, capabilities) {
-    await createTestRun();
+    await createTestRun(runName);
   },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
