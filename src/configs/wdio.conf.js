@@ -151,7 +151,7 @@ exports.config = {
       {
         webHookUrl: env.SLACK_WEB_HOOK_URL,
         notifyOnlyOnFailure: false,
-        messageTitle: 'Webdriver IO Test Results',
+        messageTitle: 'Webdriver IO Slack Reporter',
       },
     ],
     [RpService, {}],
