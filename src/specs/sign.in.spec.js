@@ -5,7 +5,7 @@ import { HomePage } from '../page_objects/home';
 import { SignInPage } from '../page_objects/sign.in.page';
 import { ApiHelper } from '../utils/api.helper';
 
-describe('S9 Sign in', () => {
+describe('Sign in', () => {
   let homePage;
   let signInPage;
 

@@ -5,7 +5,7 @@ import { HomePage } from '../page_objects/home';
 import { SettingsPage } from '../page_objects/settings.page';
 import { ApiHelper } from '../utils/api.helper';
 
-describe('S9 Log out', () => {
+describe('Log out', () => {
   let settingsPage;
   let homePage;
 

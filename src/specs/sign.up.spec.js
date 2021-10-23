@@ -4,7 +4,7 @@ import { user } from '../models';
 import { HomePage } from '../page_objects/home';
 import { SignUpPage } from '../page_objects/sign.up.page';
 
-describe('S9 Sign up', () => {
+describe('Sign up', () => {
   let homePage;
   let signUpPage;
 

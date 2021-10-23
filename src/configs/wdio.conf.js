@@ -6,11 +6,7 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: `${__dirname}/.env` });
 
 // Test Rail dependencies
-import TestRailReporter from 'wdio-v6-testrail-reporter';
-import dayjs from 'dayjs';
-import { createTestRun } from './test.rail.conf';
-
-const runName = `Test Run ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`;
+import testrailUtil from 'wdio-wdiov5testrail-reporter/lib';
 
 // Slack dependencies
 import slack from 'wdio-slack-service';
@@ -184,14 +180,14 @@ exports.config = {
   reporters: [
     'spec',
     [
-      TestRailReporter,
+      'wdiov5testrail',
       {
-        testRailUrl: env.TEST_RAIL_URL,
+        domain: env.TEST_RAIL_DOMAIN,
         username: env.TEST_RAIL_USERNAME,
         password: env.TEST_RAIL_PASSWORD,
         projectId: env.TEST_RAIL_PROJECT_ID,
         suiteId: env.TEST_RAIL_SUITE_ID,
-        runName,
+        useLatestRunId: false,
         includeAll: true,
       },
     ],
@@ -228,9 +224,6 @@ exports.config = {
    * @param {Object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  async onPrepare(config, capabilities) {
-    await createTestRun(runName);
-  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -250,8 +243,9 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    * @param {String} cid worker id (e.g. 0-0)
    */
-  // beforeSession: function (config, capabilities, specs, cid) {
-  // },
+  async beforeSession(config, capabilities, specs, cid) {
+    await testrailUtil.startup();
+  },
   /**
    * Gets executed before test execution begins. At this point you can access to all global
    * variables like `browser`. It is the perfect place to define custom commands.
@@ -342,8 +336,9 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function(exitCode, config, capabilities, results) {
-  // },
+  async onComplete(exitCode, conf, capabilities, results) {
+    await testrailUtil.cleanup(conf);
+  },
   /**
    * Gets executed when a refresh happens.
    * @param {String} oldSessionId session ID of the old session

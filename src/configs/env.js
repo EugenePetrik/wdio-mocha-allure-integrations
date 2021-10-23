@@ -14,8 +14,8 @@ export const env = cleanEnv(process.env, {
     default: '/api',
     desc: 'Prefix part in url path to be prepended to all requests',
   }),
-  TEST_RAIL_URL: str({
-    default: 'https://project.testrail.io/',
+  TEST_RAIL_DOMAIN: str({
+    default: 'project.testrail.io',
     desc: 'TestRail URL',
   }),
   TEST_RAIL_USERNAME: email({

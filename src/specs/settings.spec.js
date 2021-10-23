@@ -3,7 +3,7 @@ import { SettingsPage } from '../page_objects/settings.page';
 import { ApiHelper } from '../utils/api.helper';
 import { user } from '../models';
 
-describe('S9 Settings', () => {
+describe('Settings', () => {
   let settingsPage;
 
   before(async () => {

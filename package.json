@@ -55,7 +55,7 @@
     "wdio-reportportal-reporter": "^7.3.0",
     "wdio-reportportal-service": "^7.3.0",
     "wdio-slack-service": "^2.0.9",
-    "wdio-v6-testrail-reporter": "^0.0.13",
+    "wdio-wdiov5testrail-reporter": "^1.0.29",
     "webdriverio": "^7.14.1",
     "winston": "^3.3.3"
   },
