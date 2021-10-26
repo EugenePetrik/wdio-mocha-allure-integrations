@@ -307,5 +307,3 @@ services:
 #volumes:
 #  postgres:
 #  minio:
-
-# docker-compose -f report-portal-docker-compose.yml up -d
