@@ -3,18 +3,9 @@
 import { env } from './env';
 import * as dotenv from 'dotenv';
 
+import { logger } from './logger';
+
 dotenv.config({ path: `${__dirname}/.env` });
-
-// Test Rail dependencies
-import testrailUtil from 'wdio-wdiov5testrail-reporter/lib';
-
-// Slack dependencies
-import slack from 'wdio-slack-service';
-
-// Report Portal dependencies
-import reportportal from 'wdio-reportportal-reporter';
-import RpService from 'wdio-reportportal-service';
-import { RPconf } from './report.portal.conf';
 
 exports.config = {
   //
@@ -143,19 +134,7 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: [
-    'chromedriver',
-    'devtools',
-    [
-      slack,
-      {
-        webHookUrl: env.SLACK_WEB_HOOK_URL,
-        notifyOnlyOnFailure: false,
-        messageTitle: 'Webdriver IO Slack Reporter',
-      },
-    ],
-    [RpService, {}],
-  ],
+  services: ['chromedriver', 'devtools'],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -180,26 +159,14 @@ exports.config = {
   reporters: [
     'spec',
     [
-      'wdiov5testrail',
-      {
-        domain: env.TEST_RAIL_DOMAIN,
-        username: env.TEST_RAIL_USERNAME,
-        password: env.TEST_RAIL_PASSWORD,
-        projectId: env.TEST_RAIL_PROJECT_ID,
-        suiteId: env.TEST_RAIL_SUITE_ID,
-        useLatestRunId: false,
-        includeAll: true,
-      },
-    ],
-    [
       'allure',
       {
         outputDir: 'allure-results',
-        disableWebdriverStepsReporting: false,
+        disableMochaHooks: false,
+        disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting: false,
       },
     ],
-    [reportportal, RPconf],
   ],
 
   //
@@ -243,9 +210,8 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    * @param {String} cid worker id (e.g. 0-0)
    */
-  async beforeSession(config, capabilities, specs, cid) {
-    await testrailUtil.startup();
-  },
+  // async beforeSession(config, capabilities, specs, cid) {
+  // },
   /**
    * Gets executed before test execution begins. At this point you can access to all global
    * variables like `browser`. It is the perfect place to define custom commands.
@@ -267,13 +233,15 @@ exports.config = {
    * Hook that gets executed before the suite starts
    * @param {Object} suite suite details
    */
-  // beforeSuite: function (suite) {
-  // },
+  beforeSuite(suite) {
+    logger.debug(`Suite "${suite.fullTitle}" from file "${suite.file}" starts`);
+  },
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
   async beforeTest(test, context) {
     await browser.setTimeout({ implicit: 1000 });
+    logger.debug(`Test "${test.title}" starts`);
   },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
@@ -294,14 +262,16 @@ exports.config = {
     if (!passed) {
       await browser.takeScreenshot();
     }
+    logger.debug(`Test "${test.title}" finished`);
   },
 
   /**
    * Hook that gets executed after the suite has ended
    * @param {Object} suite suite details
    */
-  // afterSuite: function (suite) {
-  // },
+  afterSuite(suite) {
+    logger.debug(`Suite "${suite.fullTitle}" from file "${suite.file}" finished`);
+  },
   /**
    * Runs after a WebdriverIO command gets executed
    * @param {String} commandName hook command name
@@ -336,9 +306,8 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  async onComplete(exitCode, conf, capabilities, results) {
-    await testrailUtil.cleanup(conf);
-  },
+  // async onComplete(exitCode, conf, capabilities, results) {
+  // },
   /**
    * Gets executed when a refresh happens.
    * @param {String} oldSessionId session ID of the old session
