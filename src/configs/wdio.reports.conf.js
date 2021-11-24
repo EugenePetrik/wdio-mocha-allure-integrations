@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import { config } from './wdio.shared.conf';
 import { env } from './env';
 
